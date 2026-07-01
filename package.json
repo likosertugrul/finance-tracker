@@ -20,5 +20,10 @@
   },
   "engines": {
     "node": ">=20"
+  },
+  "pnpm": {
+    "overrides": {
+      "next": "^15.3.0"
+    }
   }
 }

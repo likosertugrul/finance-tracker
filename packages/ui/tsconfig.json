@@ -1,0 +1,12 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "lib": ["DOM", "DOM.Iterable", "ES2022"],
+    "rootDir": "src",
+    "noEmit": true
+  },
+  "include": ["src/**/*"],
+  "comment": "native (.native.tsx) varyantlar RN tipleriyle mobil uygulamada derlenir; ui'nin web tip denetiminden hariç.",
+  "exclude": ["src/**/*.native.tsx"]
+}

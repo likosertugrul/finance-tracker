@@ -1,0 +1,14 @@
+{
+  "expo": {
+    "name": "Finance",
+    "slug": "finance",
+    "scheme": "finance",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "dark",
+    "ios": { "supportsTablet": true, "bundleIdentifier": "com.finance.app" },
+    "android": { "package": "com.finance.app" },
+    "plugins": ["expo-router"],
+    "experiments": { "typedRoutes": false }
+  }
+}

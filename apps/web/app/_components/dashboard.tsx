@@ -42,7 +42,7 @@ const CLASS_LABELS: Record<string, string> = {
   cash: "Nakit",
 };
 
-export function Dashboard({ userId, email }: { userId: string; email: string }): ReactElement {
+export function Dashboard({ userId, email, onLoginRequest }: { userId: string; email: string; onLoginRequest?: () => void }): ReactElement {
   const supabase = useMemo(() => getSupabase(), []);
   const repos = useMemo(
     () => ({
@@ -363,7 +363,7 @@ export function Dashboard({ userId, email }: { userId: string; email: string }):
           </h1>
         </div>
         <div style={{ textAlign: "right" }}>
-          <p style={{ color: "#85786c", margin: 0, fontSize: 12 }}>{email}</p>
+          <p style={{ color: "#85786c", margin: 0, fontSize: 12 }}>{email || "Misafir"}</p>
           <div style={{ display: "flex", gap: 8, alignItems: "center", justifyContent: "flex-end", marginTop: 4 }}>
             <select
               value={currency}
@@ -384,9 +384,15 @@ export function Dashboard({ userId, email }: { userId: string; email: string }):
                 </option>
               ))}
             </select>
-            <button onClick={() => supabase.auth.signOut()} style={ghostBtn}>
-              Çıkış
-            </button>
+            {userId === "guest" ? (
+              <button onClick={onLoginRequest} style={ghostBtn}>
+                Giriş Yap
+              </button>
+            ) : (
+              <button onClick={() => supabase.auth.signOut()} style={ghostBtn}>
+                Çıkış
+              </button>
+            )}
           </div>
         </div>
       </header>

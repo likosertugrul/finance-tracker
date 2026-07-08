@@ -566,6 +566,7 @@ export function Dashboard({ userId, email, onLoginRequest }: { userId: string; e
           existing={assets}
           finnhubKey={process.env.NEXT_PUBLIC_FINNHUB_API_KEY}
           onAdded={reload}
+          onLoginRequest={onLoginRequest}
         />
       </Section>
 

@@ -32,6 +32,7 @@ export function AddAsset({
   existing,
   finnhubKey,
   onAdded,
+  onLoginRequest,
 }: {
   assetRepo: SupabaseAssetRepository;
   tradeRepo: SupabaseTradeRepository;
@@ -39,6 +40,7 @@ export function AddAsset({
   existing: Asset[];
   finnhubKey?: string | undefined;
   onAdded: () => void;
+  onLoginRequest?: () => void;
 }): ReactElement {
   const [mode, setMode] = useState<"crypto" | "stock" | "fx" | "fund">("crypto");
   const [picked, setPicked] = useState<Picked | null>(null);
@@ -120,6 +122,11 @@ export function AddAsset({
     }
     if (!unitPrice) {
       setErr("Fiyat gerekli.");
+      return;
+    }
+    if (userId === "guest") {
+      setErr("Varlık eklemek için giriş yapman gerekiyor.");
+      onLoginRequest?.();
       return;
     }
     setBusy(true);
